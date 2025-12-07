@@ -13,7 +13,8 @@ dependencies = [
     "requests (>=2.32.5,<3.0.0)",
     "pandas (>=2.3,<3.0.0)",
     "openpyxl (>=3.1.5,<4.0.0)",
-    "pandas-stubs (==2.3.3.251201)"
+    "pandas-stubs (==2.3.3.251201)",
+    "finnhub-python (>=2.4.26,<3.0.0)"
 ]
 
 
