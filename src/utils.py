@@ -1,7 +1,9 @@
-import pandas as pd
+import datetime
 import json
 import logging
-import datetime
+
+import pandas as pd
+
 from config import PATHS
 
 logging.basicConfig(
@@ -49,5 +51,3 @@ def get_user_settings() -> dict:
     with open(PATHS["user_settings"]) as f:
         settings = json.load(f)
         return settings
-
-print(get_distance_date())
