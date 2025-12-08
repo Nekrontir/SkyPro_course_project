@@ -132,7 +132,7 @@ def get_stock_price(settings: dict) -> list[dict]:
     return result
 
 
-def get_main_web_json_answer(time: str):
+def get_main_web_json_answer(time: str) -> str:
     """
     Функция формирования json-ответа для главной вэб страницы.
     На вход функция получает строку времени формата YYYY-MM-DD HH:MM:SS,

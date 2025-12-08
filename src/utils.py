@@ -1,6 +1,7 @@
 import datetime
 import json
 import logging
+from typing import Any
 
 import pandas as pd
 
@@ -30,7 +31,7 @@ def get_date_range() -> list[str]:
     return [start_date, today_date]
 
 
-def import_data_from_file(time_range: list = None) -> pd.DataFrame:
+def import_data_from_file(time_range: list[Any] = None) -> pd.DataFrame:
     """
     Получение данных из excel-файла при помощи библиотеки "pandas".
     Возвращает dataframe. Если указан временной промежуток,
