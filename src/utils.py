@@ -17,7 +17,11 @@ logging.basicConfig(
 logger_utils_mod = logging.getLogger("utils_module")
 
 
-def get_date_range() -> list:
+def get_date_range() -> list[str]:
+    """
+    Функция ничего не принимает на вход.
+    Возвращает лист с датами [начало месяца, сейчас]. Время в виде строки формата DD.MM.YYYY HH:MM:SS
+    """
     current_date = datetime.datetime.now()
     start_date = current_date.strftime("01.%m.%Y 00:00:00")
     today_date = current_date.strftime("%d.%m.%Y %H:%M:%S")
@@ -27,7 +31,8 @@ def get_date_range() -> list:
 def import_data_from_file(time_range: list = None) -> pd.DataFrame:
     """
     Получение данных из excel-файла при помощи библиотеки "pandas".
-    Возвращает dataframe
+    Возвращает dataframe. Если указан временной промежуток,
+    то возвращает dataframe с операциями за указанный период
     """
     logger_utils_mod.info("Получение данных из excel-файла")
     excel_data = pd.read_excel(PATHS["get_data"])
@@ -49,3 +54,5 @@ def get_user_settings() -> dict:
     with open(PATHS["user_settings"]) as f:
         settings = json.load(f)
         return settings
+
+print(get_date_range())

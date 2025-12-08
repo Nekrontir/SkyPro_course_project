@@ -44,7 +44,12 @@ def greeting(time: int) -> str:
     return answer
 
 
-def get_card_info(df):
+def get_card_info(df: pd.DataFrame) -> list[dict]:
+    """
+    Функция принимает на вход dataframe,
+    возвращает лист словарей. Словарь состоит из номера карты,
+    суммы трат по карте, кэшбэка в размере 1р на каждые 100р
+    """
     work_df = df.copy()
     group_df = work_df.groupby("Номер карты").agg({"Сумма операции с округлением": "sum"})
     card_info = group_df["Сумма операции с округлением"].to_dict()
@@ -77,6 +82,10 @@ def get_top_five_transactions(df: pd.DataFrame) -> list[dict]:
 
 
 def get_currency_course(settings: dict) -> list[dict]:
+    """
+    Функция получает на вход настройки задаваемые пользователем в виде запрашиваемых валют,
+    возвращает словарь с указанием валюты и стоимости в рублях
+    """
 
     user_currencies = settings["user_currencies"]
     result: list = []
@@ -94,6 +103,10 @@ def get_currency_course(settings: dict) -> list[dict]:
 
 
 def get_stock_price(settings: dict) -> list[dict]:
+    """
+    Функция получает на вход биржевые лейблы компаний стоимость акций которых интересует пользователя,
+    возвращает словарь с указанием акции и ёё стоимости в рублях
+    """
 
     user_stocks = settings["user_stocks"]
     result: list = []
