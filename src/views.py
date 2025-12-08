@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -8,7 +9,7 @@ import requests
 from dotenv import load_dotenv
 
 from config import PATHS
-from src.utils import get_distance_date, get_now_time, get_user_settings, import_data_from_file
+from src.utils import get_date_range, get_user_settings, import_data_from_file
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -19,9 +20,9 @@ logging.basicConfig(
 )
 logger_views_mod = logging.getLogger("views_module")
 
-data_for_processing = import_data_from_file()
+data_for_processing: pd.DataFrame = import_data_from_file()
 user_settings: dict = get_user_settings()
-date_range = get_distance_date()
+date_range: list = get_date_range()
 
 
 def greeting(time: int) -> str:
@@ -107,12 +108,17 @@ def get_stock_price(settings: dict) -> list[dict]:
     return result
 
 
-def get_main_web_json_answer():
+def get_main_web_json_answer(time: str):
     """
     Функция формирования json-ответа для главной вэб страницы.
+    На вход функция получает строку времени формата YYYY-MM-DD HH:MM:SS,
+    на выход подаётся сформированный ответ
     """
+    date_obj = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+    now_hour = int(date_obj.strftime("%H"))
+
     answer = {
-        "greeting": f"{greeting(get_now_time())}",
+        "greeting": f"{greeting(now_hour)}",
         "cards": get_card_info(data_for_processing),
         "top_transactions": get_top_five_transactions(data_for_processing),
         "currency_rates": get_currency_course(user_settings),

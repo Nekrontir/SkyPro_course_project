@@ -17,30 +17,28 @@ logging.basicConfig(
 logger_utils_mod = logging.getLogger("utils_module")
 
 
-def get_now_time() -> int:
-    """
-    Функция для получения времени в данный момент, возвращает текущий час
-    """
-    now_date_time = datetime.datetime.now()
-    now_time = now_date_time.strftime("%H")
-    return int(now_time)
-
-
-def get_distance_date() -> list:
+def get_date_range() -> list:
     current_date = datetime.datetime.now()
     start_date = current_date.strftime("01.%m.%Y 00:00:00")
     today_date = current_date.strftime("%d.%m.%Y %H:%M:%S")
     return [start_date, today_date]
 
 
-def import_data_from_file():
+def import_data_from_file(time_range: list = None) -> pd.DataFrame:
     """
     Получение данных из excel-файла при помощи библиотеки "pandas".
     Возвращает dataframe
     """
     logger_utils_mod.info("Получение данных из excel-файла")
     excel_data = pd.read_excel(PATHS["get_data"])
-    return excel_data
+    if time_range:
+        excel_data["Дата операции"] = pd.to_datetime(excel_data["Дата операции"], dayfirst=True)
+        mask = (excel_data["Дата операции"] >= pd.to_datetime(time_range[0], dayfirst=True)) & (
+            excel_data["Дата операции"] <= pd.to_datetime(time_range[1], dayfirst=True)
+        )
+        return excel_data[mask].copy()
+    else:
+        return excel_data
 
 
 def get_user_settings() -> dict:
