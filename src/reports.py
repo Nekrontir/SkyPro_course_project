@@ -5,7 +5,7 @@ from typing import Optional
 import pandas as pd
 
 from config import PATHS
-from decorators import data_copy
+from src.decorators import data_copy
 
 logging.basicConfig(
     level=logging.DEBUG,

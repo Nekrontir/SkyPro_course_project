@@ -31,7 +31,7 @@ def get_date_range() -> list[str]:
     return [start_date, today_date]
 
 
-def import_data_from_file(time_range: list[Any] = None) -> pd.DataFrame:
+def import_data_from_file(time_range: list[Any] | None = None) -> Any:
     """
     Получение данных из excel-файла при помощи библиотеки "pandas".
     Возвращает dataframe. Если указан временной промежуток,
@@ -52,7 +52,7 @@ def import_data_from_file(time_range: list[Any] = None) -> pd.DataFrame:
         return excel_data
 
 
-def get_user_settings() -> dict:
+def get_user_settings() -> Any:
     """
     Функция считывает json-file с настройками пользователя,
     возвращает словарь с настройками
