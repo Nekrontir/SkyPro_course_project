@@ -90,26 +90,6 @@ def transactions_df() -> pd.DataFrame:
     )
 
 
-# @pytest.fixture(autouse=True)
-# def mock_decorator() -> Generator[None, Any, None]:
-#     """
-#     Фикстура для мока декоратора data_copy.
-#     Автоматически применяется ко всем тестам, чтобы избежать создания файлов.
-#     """
-#     with patch('src.reports.data_copy', lambda x: x):
-#         yield
-
-# @pytest.fixture(scope='session', autouse=True)
-# def patch_decorators_import():
-#     """Глобальная фикстура для подмены модуля decorators"""
-#     original_sys_modules = sys.modules.copy()
-#     sys.modules['decorators'] = Mock()
-#     yield
-#     # Восстанавливаем оригинальные модули
-#     sys.modules.clear()
-#     sys.modules.update(original_sys_modules)
-
-
 @pytest.fixture
 def mock_decorator_paths() -> dict:
     """Фикстура с моком путей для тестирования декоратора"""
@@ -126,18 +106,6 @@ def sample_result_dataframe() -> pd.DataFrame:
             "Дата операции": ["2024-05-01", "2024-05-02", "2024-05-03"],
         }
     )
-
-
-# @pytest.fixture
-# def mock_excel_writer_context() -> Mock:
-#     """Фикстура для мока контекстного менеджера pd.ExcelWriter"""
-#     # Создаем мок для writer, который возвращается из __enter__
-#     mock_writer = Mock()
-#     # Настраиваем контекстный менеджер
-#     mock_context = Mock()
-#     mock_context.__enter__ = Mock(return_value=mock_writer)
-#     mock_context.__exit__ = Mock(return_value=None)
-#     return mock_context
 
 
 @pytest.fixture
