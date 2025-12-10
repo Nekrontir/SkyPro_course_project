@@ -31,6 +31,7 @@ def get_date_range() -> list[str]:
     return [start_date, today_date]
 
 
+# По умолчанию работает без даты, но если задать дату, то вернёт датафрэйм за период
 def import_data_from_file(time_range: list[Any] | None = None) -> Any:
     """
     Получение данных из excel-файла при помощи библиотеки "pandas".

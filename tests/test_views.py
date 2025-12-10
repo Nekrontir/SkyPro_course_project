@@ -6,8 +6,14 @@ import pandas as pd
 import pytest
 
 # Импортируем функции из views
-from src.views import (get_card_info, get_currency_course, get_main_web_json_answer, get_stock_price,
-                       get_top_five_transactions, greeting)
+from src.views import (
+    get_card_info,
+    get_currency_course,
+    get_main_web_json_answer,
+    get_stock_price,
+    get_top_five_transactions,
+    greeting,
+)
 
 
 @pytest.mark.parametrize(

@@ -21,7 +21,7 @@ logger_reports_mod = logging.getLogger("reports_module")
 def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> pd.DataFrame:
     """
     Функция принимает на вход:
-    :param transactions: датафрейм с транзакциями
+    :param transactions: DataFrame с транзакциями
     :param category: название категории
     :param date: опциональная дата, если дата не передана, то берется текущая дата
     :return: функция возвращает траты по заданной категории за последние три месяца (от переданной даты)
