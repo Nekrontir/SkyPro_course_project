@@ -7,7 +7,6 @@ import pytest
 
 @pytest.fixture
 def sample_dataframe() -> pd.DataFrame:
-    """Фикстура с тестовыми данными. Возвращает DataFrame."""
     return pd.DataFrame(
         {
             "Категория": ["Супермаркеты", "Транспорт", "Супермаркеты", "Кафе"],
@@ -20,10 +19,6 @@ def sample_dataframe() -> pd.DataFrame:
 
 @pytest.fixture
 def mock_dependencies() -> Generator[tuple[MagicMock | AsyncMock, MagicMock | AsyncMock], Any, None]:
-    """
-    Фикстура для мока зависимостей.
-    Возвращает кортеж из двух мок-объектов.
-    """
     with (
         patch("src.services.import_data_from_file") as mock_import,
         patch("src.services.logger_services_mod") as mock_logger,
@@ -33,20 +28,17 @@ def mock_dependencies() -> Generator[tuple[MagicMock | AsyncMock, MagicMock | As
 
 @pytest.fixture
 def mock_logger() -> Generator[MagicMock | AsyncMock, Any, None]:
-    """Фикстура для мока логгера utils_module"""
     with patch("src.utils.logger_utils_mod") as mock_logger:
         yield mock_logger
 
 
 @pytest.fixture
 def mock_paths() -> Dict[str, str]:
-    """Фикстура с моком путей"""
     return {"get_data": "test_data.xlsx", "user_settings": "test_settings.json", "logs": "test_logs"}
 
 
 @pytest.fixture
 def sample_excel_data() -> pd.DataFrame:
-    """Фикстура с тестовыми данными Excel"""
     return pd.DataFrame(
         {
             "Дата операции": [
@@ -63,17 +55,12 @@ def sample_excel_data() -> pd.DataFrame:
 
 @pytest.fixture
 def mock_reports_logger() -> Generator[Mock, Any, None]:
-    """Фикстура для мока логгера reports_module"""
     with patch("src.reports.logger_reports_mod") as mock_logger:
         yield mock_logger
 
 
 @pytest.fixture
 def transactions_df() -> pd.DataFrame:
-    """
-    Фикстура с тестовыми транзакциями за разные даты.
-    Специально для тестирования spending_by_category.
-    """
     return pd.DataFrame(
         {
             "Категория": ["Супермаркеты", "Супермаркеты", "Транспорт", "Кафе", "Супермаркеты"],
@@ -92,13 +79,11 @@ def transactions_df() -> pd.DataFrame:
 
 @pytest.fixture
 def mock_decorator_paths() -> dict:
-    """Фикстура с моком путей для тестирования декоратора"""
     return {"data": "/fake/path/data", "logs": "/fake/path/logs"}
 
 
 @pytest.fixture
 def sample_result_dataframe() -> pd.DataFrame:
-    """Фикстура с тестовым DataFrame для декоратора"""
     return pd.DataFrame(
         {
             "Категория": ["Супермаркеты", "Транспорт", "Кафе"],
@@ -110,14 +95,12 @@ def sample_result_dataframe() -> pd.DataFrame:
 
 @pytest.fixture
 def mock_views_logger() -> Generator[Mock, Any, None]:
-    """Фикстура для мока логгера views_module"""
     with patch("src.views.logger_views_mod") as mock_logger:
         yield mock_logger
 
 
 @pytest.fixture
 def sample_processing_dataframe() -> pd.DataFrame:
-    """Фикстура с тестовыми данными. Возвращает DataFrame."""
     return pd.DataFrame(
         {
             "Номер карты": ["*1111", "*2222", "*1111", "*3333"],
@@ -133,6 +116,5 @@ def sample_processing_dataframe() -> pd.DataFrame:
 
 @pytest.fixture
 def mock_env_vars() -> Generator[None, Any, None]:
-    """Фикстура для мока переменных окружения"""
     with patch.dict("os.environ", {"API_KEY_1": "fake_api_key_1", "API_KEY_2": "fake_api_key_2"}):
         yield
