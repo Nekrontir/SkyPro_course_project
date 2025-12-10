@@ -29,7 +29,6 @@ def test_greeting_returns_correct_message(hour: int, expected_greeting: str, moc
 def test_get_card_info_returns_correct_structure(
     sample_processing_dataframe: pd.DataFrame, mock_views_logger: Mock
 ) -> None:
-    """Тест функции get_card_info: проверяет структуру возвращаемых данных."""
     result = get_card_info(sample_processing_dataframe)
     assert isinstance(result, list)
     assert len(result) == 3
